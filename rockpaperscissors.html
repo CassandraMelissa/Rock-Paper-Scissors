@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock, Paper, Scissors</title>
+</head>
+<script type="text/javascript">
+	var userInput;
+
+	var button;
+
+	var computerInput;
+
+	function start(){
+		button = document.getElementById('SubmitButton');
+		button.addEventListener("click", play, false);
+	}
+
+	function play(){
+		userInput = document.getElementById("userInput").value;
+		computerInput = Math.random();//will choose a random nnumber from 0 to 1
+		var computerAnswer;
+		computerAnswer = answer(computerInput);
+		var winner;
+		var output;
+		winner = compare(userInput,computerAnswer);
+		output = "<p>" + winner;
+		document.getElementById("result").innerHTML += output;
+		//function to create the image according to the users chosen hand
+		userImage(userInput);
+		//function to create the image according to the computers chosen hand
+		compImage(computerAnswer);
+	}
+
+	function answer(computerInput){
+		if(computerInput > .6){
+			return "Rock";
+		}
+		else if(computerInput < .4){
+			return "Paper";
+		}
+		else{
+			return "Scissors";
+		}
+	}
+	
+	//function to determine winner
+	function compare(userInput, computerAnswer){
+		if(userInput == computerAnswer){
+
+			return "It's a tie!";
+		}	
+		if(userInput == "Rock"){
+			if(computerAnswer == "Paper"){
+				return "You lose!";
+			}
+			else{
+				//computer = scissors
+				return "You win!";
+			}
+		}
+		if(userInput == "Paper"){
+			if(computerAnswer == "Scissors"){
+				return "You lose!";
+			}
+			else{
+				//computer chose rock
+				return "You win!";
+			}
+		}
+		if(userInput == "Scissors"){
+			if(computerAnswer == "Rock"){
+				return "You lose!";
+			}
+			else{
+				//computer chose paper
+				return "You win!";
+			}
+		}
+
+	}
+
+	function compImage(computerAnswer){
+		if(computerAnswer == "Rock"){
+			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Rock.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Rock");
+  			document.body.appendChild(x);
+  		}
+  		else if(computerAnswer == "Paper"){
+  			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Paper.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Paper");
+  			document.body.appendChild(x);
+  		}
+  		else{
+  			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Scissors.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Scissors");
+  			document.body.appendChild(x);
+  		}
+	}
+
+	function userImage(userInput){
+		if(userInput == "Rock"){
+			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Rock.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Rock");
+  			document.body.appendChild(x);
+  		}
+  		else if(userInput == "Paper"){
+  			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Paper.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Paper");
+  			document.body.appendChild(x);
+  		}
+  		else{
+  			var x = document.createElement("IMG");
+  			x.setAttribute("src", "Scissors.jpg");
+  			x.setAttribute("width", "304");
+  			x.setAttribute("height", "228");
+  			x.setAttribute("alt", "Scissors");
+  			document.body.appendChild(x);
+  		}
+	}
+
+	function replay(){
+		location.reload();
+	}
+
+	window.addEventListener("load", start, false);
+
+</script>
+
+<style type="text/css">
+	body{
+		background-image: url("arcade.jpg");
+		background-repeat: no-repeat;
+		background-size: 1700px 770px;
+	}
+	h1{
+		color: white;
+	}
+	#gameTitle{
+		color: white;
+	}
+	#result{
+		color: white;
+	}
+</style>
+
+<body>
+	<h1>Let's Play!</h1>
+	<!-- # because it stays on the same page -->
+	<form action='#'>
+		<div id="gameTitle">Rock, Paper, or Scissors</div>
+		<p><input type="text" id="userInput" name="userInput"></p>
+		<br><input type="button" id="SubmitButton" value="Play!">
+		<p><div id="result">Result</div></p>
+	</form>
+	<p><button onclick="replay()"> Play Again! </button></p>
+</body>
+</html>
